@@ -49,7 +49,7 @@ export default class UsersRepository {
     return updateUser;
   }
 
-  deleteUser(id) {
-    this.users = this.users.filter((user) => user.id !== id);
+  async deleteUser(id) {
+    await this.pg.none("DELETE FROM users WHERE id = $1", id);
   }
 }
